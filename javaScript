@@ -31,3 +31,18 @@ class Dog implements Animal {
         return "Bark";
     }
 }
+
+
+Function Overriding: A child class redefines a parent method.
+Function Overloading: Same method name, different parameters (not supported in PHP).
+
+class ParentClass {
+    public function greet() {
+        return "Hello from Parent";
+    }
+}
+class ChildClass extends ParentClass {
+    public function greet() {
+        return "Hello from Child";
+    }
+}
