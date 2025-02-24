@@ -5,3 +5,21 @@ Encapsulation – Bundling data and methods together.
 Abstraction – Hiding implementation details and exposing only necessary functionality.
 Inheritance – Deriving new classes from existing ones.
 Polymorphism – One interface, multiple implementations.
+
+
+What is final keyword, and how does it work?
+✅ Answer:
+The final keyword prevents class inheritance and method overriding.
+
+ What is an interface, and how is it different from an abstract class?
+✅ Answer:
+An interface defines method signatures without implementation. A class implementing an interface must define all its methods.
+
+interface Animal {
+    public function makeSound();
+}
+class Dog implements Animal {
+    public function makeSound() {
+        return "Bark";
+    }
+}
