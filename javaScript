@@ -1,6 +1,9 @@
 What are the four principles of OOP?
 The four main principles of Object-Oriented Programming (OOP) are:
 
+Abstraction hides unnecessary details and shows only important parts.
+Encapsulation hides data to prevent unauthorized access.
+
 Encapsulation – Bundling data and methods together.
 Abstraction – Hiding implementation details and exposing only necessary functionality.
 abstract class Animal {
