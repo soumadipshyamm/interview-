@@ -391,3 +391,95 @@ Here are the answers to your questions:
 
 Let me know if you need any further explanation! 🚀
 
+
+
+
+
+### **JavaScript & jQuery Questions**
+
+1. **What is Asynchronous?**  
+   - Asynchronous operations allow tasks to run independently of the main execution thread, preventing blocking.  
+   - Example:  
+     ```js
+     console.log("Start");
+     setTimeout(() => console.log("Async Task"), 2000);
+     console.log("End");
+     ```
+   - Output:  
+     ```
+     Start
+     End
+     Async Task
+     ```
+
+2. **What is jQuery No Conflict?**  
+   - Used to prevent conflicts when multiple libraries use `$`.  
+   - Example:  
+     ```js
+     var jq = jQuery.noConflict();
+     jq("#element").hide();
+     ```
+
+3. **What is a Callback?**  
+   - A function passed as an argument to another function, executed later.  
+   - Example:  
+     ```js
+     function greet(name, callback) {
+         console.log("Hello, " + name);
+         callback();
+     }
+     greet("Alice", function () {
+         console.log("Callback executed!");
+     });
+     ```
+   - Output:  
+     ```
+     Hello, Alice
+     Callback executed!
+     ```
+
+4. **Difference between Undeclared and Undefined?**  
+   - **Undeclared:** Variable is not defined in the code.  
+     ```js
+     console.log(x); // ReferenceError: x is not defined
+     ```
+   - **Undefined:** Variable is declared but has no value.  
+     ```js
+     let y;
+     console.log(y); // undefined
+     ```
+
+5. **Difference between `window.onload` and `$(document).ready()`?**  
+   - `window.onload` waits for the **entire** page (including images) to load.  
+   - `$(document).ready()` fires **as soon as the DOM is ready**.  
+   - Example:  
+     ```js
+     window.onload = function() {
+         console.log("Window loaded");
+     };
+
+     $(document).ready(function() {
+         console.log("DOM ready");
+     });
+     ```
+   - Output:
+     ```
+     DOM ready
+     Window loaded
+     ```
+
+---
+
+### **Business & Software Questions**
+
+6. **Difference between EMS and CRM?**  
+
+| Feature | EMS (Enterprise Management System) | CRM (Customer Relationship Management) |
+|---------|-----------------------------------|---------------------------------------|
+| Purpose | Manages entire business operations. | Focuses on customer interactions. |
+| Modules | Includes HR, finance, supply chain, inventory, etc. | Includes sales, marketing, customer support. |
+| Focus | Internal business processes. | Customer engagement and sales. |
+| Example | SAP ERP, Oracle ERP. | Salesforce, HubSpot. |
+
+Would you like more details on any of these topics? 🚀
+
