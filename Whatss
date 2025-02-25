@@ -1,0 +1,186 @@
+Here are the answers to your questions:
+
+---
+
+### **General & Server-Related Questions**
+1. **What is Apache?**  
+   - Apache is an open-source web server software that serves HTTP requests and hosts websites. It supports modules for customization and works on multiple platforms.
+
+2. **Nginx - Are you familiar with it?**  
+   - Yes. Nginx is a high-performance web server and reverse proxy. It’s widely used for handling concurrent connections efficiently and is often used as a load balancer.
+
+3. **Google Markers in Laravel?**  
+   - If you mean Google Maps Markers in Laravel, you can use the Google Maps API to place markers on a map. Libraries like `laravel-google-maps` help integrate this easily.
+
+4. **What about HTTP D?**  
+   - `httpd` (HyperText Transfer Protocol Daemon) is a web server software that handles HTTP requests. Apache HTTP Server is often referred to as `httpd`.
+
+5. **What is the purpose of `ini_set()` in PHP?**  
+   - `ini_set()` is used to change PHP configuration settings at runtime. Example:  
+     ```php
+     ini_set('display_errors', 1);
+     ```
+
+6. **What is `php.ini`?**  
+   - `php.ini` is the configuration file for PHP. It controls settings like error reporting, file upload limits, memory limits, etc.
+
+7. **Suppose You Don't Have PHP.INI Access - Any Alternative Approach?**  
+   - Yes, alternatives include:
+     - Using `.htaccess` (for Apache):  
+       ```
+       php_value max_execution_time 300
+       ```
+     - Modifying settings in the script using `ini_set()`.
+     - Using `php_flag` in `.htaccess`.
+
+8. **What is `.htaccess`?**  
+   - `.htaccess` is a configuration file for Apache that allows you to manage URL redirection, authentication, and PHP settings.
+
+---
+
+### **Cookies & Sessions**
+9. **What is a Persistent Cookie?**  
+   - A persistent cookie is a cookie that remains stored on the user's device even after the browser is closed.
+
+10. **How to Destroy a Cookie?**  
+    - Use `setcookie()` with an expired time:  
+      ```php
+      setcookie("user", "", time() - 3600, "/");
+      ```
+
+11. **Basic Difference Between Session and Cookie?**  
+    - A session is stored on the server, while a cookie is stored in the user's browser.
+
+12. **When Does Session Data Get Destroyed?**  
+    - When the browser is closed (default behavior) or after a timeout (e.g., `session.gc_maxlifetime` in `php.ini`).
+
+---
+
+### **PHP & cURL**
+13. **What is cURL in PHP? Can We Achieve the Same Without Using cURL?**  
+    - cURL (Client URL) is a PHP library for making HTTP requests.  
+    - Alternatives include:
+      - `file_get_contents()`
+      - `Guzzle` (a PHP HTTP client)
+
+14. **Steps of a cURL Call?**  
+    ```php
+    $ch = curl_init("https://example.com");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+    ```
+
+---
+
+### **Laravel-Specific Questions**
+15. **What is the Default Template You Use in Laravel?**  
+    - Laravel uses Blade as its default templating engine.
+
+16. **Uses of `composer.json`?**  
+    - It defines dependencies and package configurations in a Laravel project.
+
+17. **What is Localization in Laravel?**  
+    - Localization allows translation of strings for multi-language support. Example:  
+      ```php
+      __('messages.welcome')
+      ```
+
+18. **How Does CSRF Token Work?**  
+    - It prevents cross-site request forgery by verifying a unique token in form submissions.
+
+19. **What is Eager Loading?**  
+    - Eager loading loads related models with a query to improve performance.  
+      ```php
+      User::with('posts')->get();
+      ```
+
+20. **What Are Facades?**  
+    - Facades provide a static interface to Laravel’s services. Example:  
+      ```php
+      use Illuminate\Support\Facades\Cache;
+      Cache::put('key', 'value', 600);
+      ```
+
+21. **What is Reverse Routing in Laravel?**  
+    - Reverse routing generates URLs based on route names.  
+      ```php
+      route('user.profile', ['id' => 1]);
+      ```
+
+22. **What is Soft Delete and Delete in Laravel?**  
+    - Soft delete marks a record as deleted but keeps it in the database (`deleted_at`).  
+    - Delete removes the record permanently.
+
+23. **Have You Created Middleware in Laravel?**  
+    - Yes. Middleware filters HTTP requests. Example:  
+      ```php
+      php artisan make:middleware CheckAge
+      ```
+
+---
+
+### **SQL & Database**
+24. **Difference Between `CHAR` and `VARCHAR`?**  
+    - `CHAR` has a fixed length, while `VARCHAR` has a variable length.
+
+25. **If I Put `%` or `_` in a Statement?**  
+    - `%` matches any sequence of characters.  
+    - `_` matches a single character.
+
+26. **Uses of `DISTINCT` Clause?**  
+    - `DISTINCT` removes duplicate values in a query.
+
+27. **Dropping Primary Key via Query?**  
+    ```sql
+    ALTER TABLE users DROP PRIMARY KEY;
+    ```
+
+28. **Can We Create a Table Without a Primary Key?**  
+    - Yes, but it's not recommended.
+
+29. **Difference Between `WHERE` and `HAVING`?**  
+    - `WHERE` filters rows before aggregation.  
+    - `HAVING` filters aggregated results.
+
+30. **What is Query Optimization?**  
+    - Improving database performance using indexes, proper queries, and normalization.
+
+31. **Can We Set a `VARCHAR` Field as a Primary Key?**  
+    - Yes, but it's inefficient compared to `INT` or `UUID`.
+
+---
+
+### **JavaScript & jQuery**
+1. **What is Asynchronous?**  
+   - Asynchronous operations do not block execution and run independently. Example:  
+     ```js
+     setTimeout(() => console.log("Hello"), 1000);
+     ```
+
+2. **jQuery No Conflict?**  
+   - Prevents conflicts when using multiple libraries. Example:  
+     ```js
+     jQuery.noConflict();
+     ```
+
+3. **What is a Callback?**  
+   - A function passed as an argument to another function. Example:  
+     ```js
+     function greet(name, callback) {
+       console.log("Hello " + name);
+       callback();
+     }
+     ```
+
+4. **Difference Between Undeclared and Undefined?**  
+   - **Undeclared**: Variable is not declared.  
+   - **Undefined**: Declared but no value assigned.
+
+5. **Difference Between `window.onload` and `$(document).ready()`?**  
+   - `window.onload`: Fires after all resources load.  
+   - `$(document).ready()`: Fires when the DOM is ready.
+
+---
+
+Let me know if you need more details on any of these! 🚀
