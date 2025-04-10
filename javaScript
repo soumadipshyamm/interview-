@@ -68,3 +68,46 @@ class ChildClass extends ParentClass {
         return "Hello from Child";
     }
 }
+
+
+
+
+Feature	Description
+Objects	Define structured data with key-value pairs.
+Type Alias (type)	Used to create reusable object types.
+Interfaces (interface)	Defines object structures with strict rules.
+Optional Properties (?)	Allows some properties to be optional.
+Readonly Properties (readonly)	Prevents modification of object properties.
+Extending Interfaces (extends)	Inherits properties from another interface.
+Function Signatures	Defines function structures inside interfaces.
+Index Signatures ([key: string])	Allows dynamic object properties.
+
+
+
+Feature	Description
+Function Annotations	Explicitly define parameter and return types.
+Optional Parameters	Use ? to make a parameter optional.
+Default Parameters	Assign default values to parameters.
+Arrow Functions	Short syntax for functions (=>).
+Rest Parameters	Accept multiple arguments (...args).
+Function Overloading	Define multiple function signatures.
+Void Return Type	Used when function does not return a value.
+Never Return Type	Used when function never completes (throws errors).
+Callbacks	Functions passed as arguments.
+Function Types	Use type or interface for reusable function types.
+
+
+
+Feature	Description
+Type Annotations	Explicitly define types (string, number, boolean).
+Type Inference	TypeScript detects types automatically.
+Union Types	Allow multiple types (`string
+Type Aliases	Create reusable custom types (`type ID = string
+Objects	Define strict object structures.
+Functions	Define types for parameters and return values.
+Optional & Default Params	Make parameters optional (?) or set defaults.
+Arrays & Tuples	Store multiple values in a structured way.
+Enums	Define named constants.
+any, void, never	Flexible (any), no return (void), no completion (never).
+Null & Undefined	Handle optional values safely.
+Type Assertions	Convert one type into another (as).
