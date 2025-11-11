@@ -1022,3 +1022,310 @@ Two microservices using MongoDB transactions → deadlock.
 ✅ Full answer key
 
 Tell me what next.
+
+
+
+
+
+
+
+# Advanced Node.js & MongoDB interview question set (with concise answers + short explanations)
+
+Nice — below are **high-level + deep-dive** interview questions for **Node.js** and **MongoDB**, each with a compact answer and a brief explanation or example. Use these as flashcards, interview prep, or to build tests. If you want them in printable PDF/cheatsheet or categorized into junior/mid/senior, tell me and I’ll produce that next.
+
+---
+
+## Node.js — advanced questions
+
+1. **What is the Node.js event loop?**
+   *One-line:* A single-threaded loop that manages callbacks, I/O, timers, and microtask queues to achieve asynchronous non-blocking behavior.
+   *Why:* It processes phases (timers, pending callbacks, idle/prepare, poll, check, close) and runs microtasks between phases.
+
+2. **Difference between process.nextTick() and setImmediate()?**
+   *One-line:* `process.nextTick()` queues microtasks before I/O and next event-loop phase; `setImmediate()` schedules callbacks in the check phase after I/O.
+   *Why:* `nextTick` runs earlier and can starve I/O if abused.
+
+3. **What are microtasks and macrotasks?**
+   *One-line:* Microtasks (Promises, `process.nextTick`) run after current execution and before the event-loop continues; macrotasks (timers, I/O callbacks) run in event-loop phases.
+   *Why:* Ordering affects performance and correctness.
+
+4. **How does Node handle CPU-bound work?**
+   *One-line:* Offload to worker threads or separate processes (child_process/cluster) because the main thread is single-threaded for JS.
+   *Why:* Heavy CPU blocks event loop and delays I/O.
+
+5. **Explain Worker Threads vs Cluster module.**
+   *One-line:* Worker Threads share memory and run JS in parallel threads (same process); Cluster forks processes with separate memory and CPUs.
+   *Why:* Use Workers for shared-memory parallelism; Cluster for multi-core scaling of stateless servers.
+
+6. **When to use streams and why?**
+   *One-line:* Use streams for large data to process in chunks (memory efficient) and to enable piping/composition.
+   *Example:* `readStream.pipe(transform).pipe(writeStream)`.
+
+7. **How do backpressure and stream.pipe handle flow control?**
+   *One-line:* Streams signal `pause()`/`resume()` and `highWaterMark` to prevent faster producers from overwhelming consumers; `pipe()` handles backpressure automatically.
+   *Why:* Prevents OOM and ensures stable throughput.
+
+8. **Explain CommonJS vs ES Modules in Node.**
+   *One-line:* CommonJS (`require/module.exports`) is synchronous and dynamic; ES Modules (`import/export`) are static, allow tree-shaking, and can be asynchronous.
+   *Why:* Node supports both but mixing needs care (`.mjs` or `"type":"module"`).
+
+9. **How to debug a memory leak in Node?**
+   *One-line:* Use heap snapshots (Chrome DevTools), `--inspect`, `clinic.js`/`memwatch-next` and analyze retained objects and closures.
+   *Why:* Look for long-lived objects, event listeners, global caches.
+
+10. **What is event emitter memory leak warning and fix?**
+    *One-line:* Warning occurs when more listeners than default (10) are added; fix by removing listeners, use `once`, or increase limit with `setMaxListeners()`.
+    *Why:* Unremoved listeners can leak memory.
+
+11. **How do you implement graceful shutdown?**
+    *One-line:* Listen to signals (SIGINT/SIGTERM), stop accepting new requests, finish in-flight requests, close DB connections, then exit.
+    *Why:* Prevents dropped requests and corrupted resources.
+
+12. **Explain callback hell and Promise alternatives.**
+    *One-line:* Deeply nested callbacks create hard-to-maintain code; use Promises, async/await, or generator-based control flow.
+    *Why:* Async/await yields sequential-style code with error handling via try/catch.
+
+13. **What is the difference between `await Promise.all()` and `for await`?**
+    *One-line:* `Promise.all()` runs all promises in parallel; `for await` iterates over async iterables in sequence (or as they resolve depending on source).
+    *Why:* Choose parallel for concurrency, sequential when order/limit matters.
+
+14. **How to throttle/concurrent-limit asynchronous tasks?**
+    *One-line:* Use concurrency control libraries (p-limit, async), or implement a queue/pool to limit parallel tasks.
+    *Example:* `p-limit(5)` to restrict concurrency to 5.
+
+15. **What is Node’s module resolution algorithm?**
+    *One-line:* Node resolves relative/absolute paths, then `node_modules` directories walking up parent folders, supporting package `main`/`exports`.
+    *Why:* Understanding helps diagnose `MODULE_NOT_FOUND` and package entry issues.
+
+16. **How to secure Node.js apps?**
+    *One-line:* Validate inputs, use helmet, rate-limit, sanitize, avoid eval, secure cookies, use TLS, limit dependencies, and run as non-root.
+    *Why:* Prevent injection, XSS, CSRF, DoS, and supply-chain attacks.
+
+17. **How does the V8 garbage collector affect performance?**
+    *One-line:* GC pauses can stall event loop; tuning heap sizes and avoiding many short-lived allocations reduces GC overhead.
+    *Why:* Monitor GC with `--trace-gc` and optimize allocations.
+
+18. **Explain `cluster` load balancing on Node.**
+    *One-line:* Master forks workers and can distribute connections round-robin; each worker has its own event loop and memory.
+    *Why:* Good for CPU-bound throughput and taking advantage of multiple cores.
+
+19. **How to share sessions across cluster workers?**
+    *One-line:* Store session state in an external store (Redis, Memcached, DB) instead of in-process memory.
+    *Why:* Each worker has separate memory—shared store provides consistency.
+
+20. **What is HTTP/2 benefits with Node?**
+    *One-line:* Multiplexing, header compression, server push and fewer connections result in lower latency and better throughput.
+    *Why:* Use `http2` module with TLS for production gains.
+
+21. **How to implement rate limiting in API?**
+    *One-line:* Use token-bucket/leaky-bucket algorithms and centralized stores (Redis) for distributed rate limiting.
+    *Why:* Prevent abuse and coordinated attacks.
+
+22. **Explain Zero-downtime deploys for Node.**
+    *One-line:* Use process manager (PM2) or rolling restarts with load balancer draining, keep-alive handling, and graceful shutdown.
+    *Why:* Avoid client errors and maintain service availability.
+
+23. **How to profile Node performance?**
+    *One-line:* Use `clinic.js`, `node --inspect`, Chrome DevTools CPU/heaps profiler, and flamegraphs to find hotspots.
+    *Why:* Pinpoint CPU-heavy code or slow I/O.
+
+24. **How to handle unhandled rejections and exceptions?**
+    *One-line:* Catch Promises, use `process.on('unhandledRejection')` and `uncaughtException` to log/cleanup and then restart process safely.
+    *Why:* You should restart after `uncaughtException` to avoid corrupted state.
+
+25. **Explain `async_hooks`.**
+    *One-line:* API to track async resource lifecycles enabling tracing, context propagation, and diagnostics across asynchronous boundaries.
+    *Why:* Useful for request-scoped logging and debugging.
+
+26. **What is SSR vs API server in Node?**
+    *One-line:* SSR renders HTML on server per request (Next.js/Express with templates); API server returns JSON for clients to render.
+    *Why:* Trade-offs: SEO and first-render speed vs simpler client-side rendering.
+
+27. **How can you limit memory used by Node process?**
+    *One-line:* Use `--max-old-space-size` CLI flag, optimize data structures, stream large payloads, and use external caching.
+    *Why:* Large heaps trigger GC pauses and OOM.
+
+28. **Explain how to test Node modules thoroughly.**
+    *One-line:* Unit tests (jest/mocha), integration tests with in-memory DB or containers, end-to-end tests, and CI pipeline for coverage.
+    *Why:* Combine mocking and real integrations for confidence.
+
+29. **What is a reverse proxy and why use it with Node?**
+    *One-line:* Nginx/HAProxy in front of Node handles TLS termination, buffering, compression, and static content while providing better reliability.
+    *Why:* Offload non-app concerns and improve resilience.
+
+30. **Explain how to implement WebSockets scaling with Node.**
+    *One-line:* Use sticky sessions or share socket events via message brokers (Redis pub/sub, Kafka) so different workers can coordinate.
+    *Why:* WebSockets require consistent connection routing or shared state.
+
+---
+
+## MongoDB — advanced questions
+
+1. **Explain MongoDB document vs relational row.**
+   *One-line:* Document is a self-contained JSON-like BSON object storing related data together; rows normalize across tables.
+   *Why:* Documents favor denormalization and read performance for aggregates.
+
+2. **When to embed vs reference?**
+   *One-line:* Embed for tightly-coupled, small, frequently-read together data; reference for large/independently updated/one-to-many unbounded relationships.
+   *Why:* Embedding reduces joins; references keep duplication low.
+
+3. **How does indexing work in MongoDB?**
+   *One-line:* Indexes are B-tree-like structures mapping indexed fields to document locations for fast lookups, at a write and disk cost.
+   *Why:* Use compound, single-field, sparse, partial, text, and hashed indexes as needed.
+
+4. **What is a compound index and when to use?**
+   *One-line:* Index on multiple fields to optimize queries filtering/sorting on those combinations; order matters for prefix queries.
+   *Why:* Covers queries matching index prefix to avoid COLLSCAN.
+
+5. **Explain covered queries.**
+   *One-line:* A query is covered when all returned fields are in the index, avoiding fetching documents from disk.
+   *Why:* Much faster and reduces I/O.
+
+6. **How to analyze slow queries?**
+   *One-line:* Use `explain()` to inspect plan, check `winningPlan`, `executionStats`, and look for COLLSCAN or high docsExamined.
+   *Why:* Optimize with indexes or rewrite query.
+
+7. **What is the aggregation pipeline?**
+   *One-line:* A sequence of stages (`$match`, `$group`, `$project`, etc.) that transform documents efficiently on the server side.
+   *Why:* Replace multiple client-side operations with a single optimized DB call.
+
+8. **Explain `$lookup` and its performance implications.**
+   *One-line:* `$lookup` performs server-side joins between collections; can be efficient with indexes but can become heavy without them.
+   *Why:* Use when necessary; consider denormalization for performance-critical paths.
+
+9. **How does replication work in MongoDB?**
+   *One-line:* Replica sets maintain primary and secondaries; oplog replicates write operations to secondaries for failover and redundancy.
+   *Why:* Enables high availability and read scaling (with caveats).
+
+10. **What is read concern and write concern?**
+    *One-line:* Read concern controls data consistency level for reads (local, majority, linearizable); write concern controls durability acknowledgment (w:1, majority).
+    *Why:* Trade-offs between latency and safety.
+
+11. **Explain journaling and durability.**
+    *One-line:* Journaling writes operations to a preallocated journal file to ensure crash recovery before datafile flush.
+    *Why:* Improves durability while allowing async writes.
+
+12. **How does sharding scale MongoDB?**
+    *One-line:* Sharding distributes data across shards by shard key, enabling horizontal scaling of storage and writes.
+    *Why:* Choose shard key carefully to avoid hotspots and imbalance.
+
+13. **What makes a good shard key?**
+    *One-line:* High cardinality, evenly distributed, query-isolated, and included in most queries—avoid monotonically increasing fields.
+    *Why:* Prevents single-shard hotspots and uneven chunk distribution.
+
+14. **Explain chunk migration and balancing.**
+    *One-line:* Config servers coordinate chunk splits and migrations across shards; balancer moves chunks to maintain even distribution.
+    *Why:* Balancing affects performance and should be monitored.
+
+15. **When to use transactions in MongoDB?**
+    *One-line:* Use multi-document transactions when you need ACID across multiple documents/collections; prefer single-document atomic operations when possible.
+    *Why:* Transactions add overhead—use for correctness when necessary.
+
+16. **Explain the oplog and its role in replication.**
+    *One-line:* Oplog is a capped collection on primary storing operations in order; secondaries tail it to apply changes.
+    *Why:* Replication relies on oplog size and retention for recovery.
+
+17. **How to handle migration of schema in MongoDB?**
+    *One-line:* Use backward-compatible schema evolution, add new fields with defaults, use migration scripts, and handle both old/new formats in code.
+    *Why:* Avoid downtime and ensure deployments can handle mixed versions.
+
+18. **Explain partial indexes and use cases.**
+    *One-line:* Index only documents matching a filter (partialFilterExpression) to reduce index size and improve selective queries.
+    *Why:* Great when only a subset of documents are queried frequently.
+
+19. **What are TTL indexes and use cases?**
+    *One-line:* TTL indexes automatically remove documents after a specified time—useful for sessions, logs, cache.
+    *Why:* Offloads cleanup; not precise to the second.
+
+20. **How to do text search in MongoDB?**
+    *One-line:* Create a text index and use `$text` queries with scoring and language options.
+    *Why:* For simple full-text search; use dedicated search (Atlas Search/Elasticsearch) for advanced features.
+
+21. **Explain change streams.**
+    *One-line:* Real-time stream of DB changes (insert/update/delete) available via a cursor—useful for event-driven architectures.
+    *Why:* Requires replica set or sharded cluster.
+
+22. **How to model time-series data in MongoDB?**
+    *One-line:* Use buckets/compact documents or MongoDB time-series collections to store measurements efficiently.
+    *Why:* New time-series features optimize storage and queries.
+
+23. **How to reduce write amplification?**
+    *One-line:* Avoid frequent small updates to indexed fields, prefer bulk operations and batched writes.
+    *Why:* Reduces overhead and improves throughput.
+
+24. **Explain `wiredTiger` storage engine basics.**
+    *One-line:* Default engine using document-level concurrency, compression, and cache—better concurrency and compression than MMAPv1.
+    *Why:* Tune `wiredTigerCacheSizeGB` for memory-heavy workloads.
+
+25. **What is server selection and ping in drivers?**
+    *One-line:* Driver chooses suitable server (primary/secondary) based on read preference and measures RTT with a heartbeat/ping.
+    *Why:* Affects latency and read routing.
+
+26. **How to perform bulk writes efficiently?**
+    *One-line:* Use bulkWrite API with ordered/unordered operations to batch writes and reduce network round-trips.
+    *Why:* Higher throughput and partial failure control.
+
+27. **How to handle schema validation and constraints?**
+    *One-line:* Use JSON Schema validation in collection options to enforce formats and types at DB-level.
+    *Why:* Improves data quality and reduces app-side errors.
+
+28. **Explain transactions and `retryableWrites`.**
+    *One-line:* Transactions provide ACID across operations; `retryableWrites` automatically retries certain transient write errors.
+    *Why:* Improves reliability in distributed environments.
+
+29. **How to backup and restore MongoDB in production?**
+    *One-line:* Use mongodump/mongorestore, filesystem snapshots (LVM/EBS), or managed backups (Atlas) ensuring oplog consistency for point-in-time.
+    *Why:* Choose method based on RTO/RPO and cluster size.
+
+30. **How to handle replication lag?**
+    *One-line:* Monitor oplog application, increase resources on secondaries, tune network, or add more secondaries for read scaling.
+    *Why:* Lag causes stale reads and possible failover issues.
+
+---
+
+## Practical mini-snippets (Node + MongoDB)
+
+**Node: worker threads example**
+
+```js
+// main.js
+const { Worker } = require('worker_threads');
+const worker = new Worker('./worker.js', { workerData: { n: 42 }});
+worker.on('message', msg => console.log(msg));
+```
+
+**Node: streams pipe**
+
+```js
+const fs = require('fs');
+const zlib = require('zlib');
+fs.createReadStream('big.log')
+  .pipe(zlib.createGzip())
+  .pipe(fs.createWriteStream('big.log.gz'));
+```
+
+**MongoDB: create compound index**
+
+```js
+db.orders.createIndex({ customerId: 1, createdAt: -1 });
+```
+
+**MongoDB: aggregation example**
+
+```js
+db.sales.aggregate([
+  { $match: { status: 'A' } },
+  { $group: { _id: "$item", total: { $sum: "$amount" } } },
+  { $sort: { total: -1 } }
+]);
+```
+
+---
+
+If you want:
+
+* A printable PDF / single-page cheatsheet (I can produce it).
+* Flashcards in JSON, CSV, or Anki format.
+* A set of **behavioural+system design** interview questions combining Node + MongoDB for senior roles.
+
+Tell me which next format you want and I’ll generate it.
