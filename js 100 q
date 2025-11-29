@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script type="text/javascript" src="test.js"></script>
+</body>
+</html>
+
+
+
+<!-- Reverse a string without using built-in reverse().
+
+Check if a string is a palindrome.
+
+Count the frequency of each character in a string.
+
+Find the first non-repeating character in a string.
+
+Check if two strings are anagrams.
+
+Reverse each word in a sentence.
+
+Remove duplicate characters from a string.
+
+Find the longest word in a sentence.
+
+Convert a string to title case.
+
+Implement your own trim() logic.
+
+Reverse an array without using reverse().
+
+Find the largest number in an array.
+
+Find the smallest number in an array.
+
+Find the second largest number in an array.
+
+Find the missing number from a sequence.
+
+Remove duplicates from an array.
+
+Flatten a nested array (multi-level).
+
+Chunk an array into groups of size N.
+
+Find intersection of two arrays.
+
+Find union of two arrays.
+
+Rotate an array by K positions.
+
+Count occurrences of each element in array.
+
+Find the longest increasing subarray.
+
+Move all zeros to the end of the array.
+
+Sum of all elements in an array (no reduce).
+
+Check if a number is prime.
+
+Generate prime numbers up to N.
+
+Find factorial of a number (loop + recursion).
+
+Find Fibonacci of N (loop + recursion).
+
+Check if number is perfect (sum of divisors).
+
+Reverse digits of a number.
+
+Check if number is Armstrong.
+
+Sum of digits of a number.
+
+Find GCD of two numbers.
+
+Find LCM of two numbers.
+
+Convert decimal to binary.
+
+Convert binary to decimal.
+
+Find power of a number without using Math.pow.
+
+Count number of set bits in integer.
+
+Print all divisors of a number. 
+
+Write a function that returns another function (closure).
+
+Implement a counter using closures.
+
+Implement private variables using closure.
+
+Explain and implement currying function.
+
+Custom debounce function.
+
+Custom throttle function.
+
+Retry API call logic (max 3 retries).
+
+Custom Promise.all implementation.
+
+Custom Promise.race implementation.
+
+Create a function that memoizes results.
+
+Implement sleep() using Promise.
+
+Write async loop that waits for each iteration.
+
+Convert callback-based function to Promise.
+
+Custom event emitter class.
+
+Custom caching function for expensive operations.
+Implement a simple DOM selector function like $().
+
+Implement your own addEventListener.
+
+Build a small pub-sub system.
+
+Detect if element is in viewport.
+
+Count how many times a button is clicked (DOM + JS).
+
+Infinite scrolling logic.
+
+Virtual scrolling logic.
+
+Detect online/offline status.
+
+Implement drag-and-drop logic.
+
+Implement custom localStorage wrapper with expiry.
+Why [] == [] is false in JS?
+
+Why {} == {} is false?
+
+Why [] == ![] is true?
+
+What is event loop & microtask queue example?
+
+Explain this binding with 3 examples.
+ -->
+
+// let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let rev = [];
+// for (let i = arr.length - 1; i >= 0; i--) {
+//   console.log(arr[i]);
+//   rev.push(arr[i]);
+// }
+// console.log(rev);
+
+// console.log("***********************************");
+// let str = "apple";
+// let rev_str = "";
+// for (let i = str.length - 1; i >= 0; i--) {
+//   console.log(str[i]);
+//   rev_str+=str[i];
+// }
+// console.log(rev_str);
+
+// console.log("***********************************");
+// arr.split("")
+// (5) ['a', 'p', 'p', 'l', 'e']
+// arr.split("").reverse()
+// (5) ['e', 'l', 'p', 'p', 'a']
+// arr.split("").reverse().join("")
+// 'elppa'
+
+// console.log("***********************************");
+// console.log(arr.reverse());
+
+// ********************************************************
+//Check if a string is a palindrome.
+// const plandromChek=(str)=>{
+// let rev=str.split("").reverse().join("")
+//     if(str.toLocaleLowerCase()===rev.toLocaleLowerCase()) return true;
+//     return false;
+// }
+//  plandromChek("Maam")
+
+// ***************************************************
+// Count the frequency of each character in a string.
+// let str="werewerrrr"
+//     let totalChar=[]
+//     for(let i=0;i<str.length;i++){
+
+//         let char=str[i];    
+
+
+//         if (totalChar[char] === undefined) {
+//             totalChar[char] = 1;
+//         } else {
+//             totalChar[char] = totalChar[char] + 1;
+//         }
+
+//         // or 
+
+//         // console.log(totalChar[char]=(totalChar[char]||0)+1)        
+//         // totalChar[char]=(totalChar[char]||0)+1
+//     console.log(totalChar)
+//     }    
+//     console.log(totalChar)
+
+
+// **********************************************************************
+// Find the first non-repeating character in a string.
+let str = "werewerrrr"
+let totalChar = []
+for (let i = 0; i < str.length; i++) {
+
+  let char = str[i];
+
+
+  if (totalChar[char] === undefined) {
+    totalChar[char] = 1;
+  } else {
+    totalChar[char] = totalChar[char] + 1;
+  }
+
+  console.log(totalChar)
+}
+console.log(totalChar)
+
+
+function findFirstNonRepeatingCharNaive(str) {
+  for (let i = 0; i < str.length; i++) {
+    console.log("str[i]-1", str[i])
+    let isUnique = true;
+    for (let j = 0; j < str.length; j++) {
+      console.log("str[i]-2", str[i])
+      console.log("str[j]-2", str[j])
+      // Check if characters match, but make sure they aren't the same index
+      if (i !== j && str[i] === str[j]) {
+        console.log("str[i]-3", str[i]);
+        console.log("str[j]-3", str[j]);
+        isUnique = false;
+        break; // A duplicate was found, no need to check further
+      }
+    }
+    if (isUnique) {
+      console.log("str[i]-4", str[i]);
+      return str[i]; // Return the first character found with no duplicates
+    }
+  }
+  return null; // No non-repeating character found
+}
+
+// --- Examples ---
+console.log(`'teeter' ->`, findFirstNonRepeatingCharNaive("teeter")); // r
