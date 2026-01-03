@@ -273,3 +273,66 @@ function findFirstNonRepeatingCharNaive(str) {
 
 // --- Examples ---
 console.log(`'teeter' ->`, findFirstNonRepeatingCharNaive("teeter")); // r
+
+function findFirstNonRepeatingChar (str) {
+    const reducedObj = str.split("").reduce((acc, el) => {
+        if (acc[el]) {
+            acc[el]++
+        }
+        else {
+            acc[el] = 1
+        }
+        return acc
+    }, {})
+    console.log("reducedObj: ", reducedObj)
+    let first = ""
+    for(let [key, value] of Object.entries(reducedObj)) {
+        if (value === 1) {
+            console.log("key: ", key)
+            first = key
+            break;
+        }
+    }
+    return first;
+}
+
+function isAnagram ( str1, str2) {
+    const sortedStr1 = str1.split('').sort().join('');
+    const sortedStr2 = str2.split('').sort().join('');
+    if (sortedStr1 === sortedStr2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+function reverseEachWordv (sentence) {
+    return sentence.split(" ").reverse().join(" ")
+}
+function removeRepeatedString (str) {
+    const reducedObj = str.split("").reduce((acc, el) => {
+        if (acc[el.toLocaleLowerCase()]) {
+            acc[el.toLocaleLowerCase()]++
+        }
+        else {
+            acc[el.toLocaleLowerCase()] = 1
+        }
+        return acc
+    }, {})
+    console.log("reducedObj: ", reducedObj)
+    let first = ""
+    for(let key of Object.keys(reducedObj)) {
+       first = first + key
+    }
+    return first;
+}
+function longestWord ( sentence ) {
+    const wordArr = sentence.split(' ');
+    let longest = wordArr[0];
+    for (let i = 0; i < wordArr.length; i++) {
+        if (wordArr[i].length > longest.length) {
+            longest = wordArr[i];
+        }
+        }
+    return longest;
+    
+}
