@@ -225,27 +225,6 @@ for (let i = 0; i < str.length; i++) {
 }
 console.log(totalChar)
 
-function findFirstNonRepeatingChar (str) {
-    const reducedObj = str.split("").reduce((acc, el) => {
-        if (acc[el]) {
-            acc[el]++
-        }
-        else {
-            acc[el] = 1
-        }
-        return acc
-    }, {})
-    console.log("reducedObj: ", reducedObj)
-    let first = ""
-    for(let [key, value] of Object.entries(reducedObj)) {
-        if (value === 1) {
-            console.log("key: ", key)
-            first = key
-            break;
-        }
-    }
-    return first;
-}
 
 
 function findFirstNonRepeatingCharNaive(str) {
@@ -295,7 +274,7 @@ function findFirstNonRepeatingChar (str) {
     }
     return first;
 }
-
+/***************************************************************************/
 function isAnagram ( str1, str2) {
     const sortedStr1 = str1.split('').sort().join('');
     const sortedStr2 = str2.split('').sort().join('');
