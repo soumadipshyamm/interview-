@@ -348,4 +348,14 @@ function longestWord ( sentence ) {
         }
     return longest;    
 }
+
+
+// wordLegnt = findWord.reduce(function (log, curr) {
+  //   return curr.length > log.length ? curr : log;
+  // }, "")
+
+  // wordLegnt = findWord.sort(function (a, b) {
+  //   return b.length - a.length
+  // });
+  // return wordLegnt[0];
 **************************************************************************
