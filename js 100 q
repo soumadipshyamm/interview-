@@ -194,25 +194,18 @@ Explain this binding with 3 examples.
 // let str="werewerrrr"
 //     let totalChar=[]
 //     for(let i=0;i<str.length;i++){
-
 //         let char=str[i];    
-
-
 //         if (totalChar[char] === undefined) {
 //             totalChar[char] = 1;
 //         } else {
 //             totalChar[char] = totalChar[char] + 1;
 //         }
-
 //         // or 
-
 //         // console.log(totalChar[char]=(totalChar[char]||0)+1)        
 //         // totalChar[char]=(totalChar[char]||0)+1
 //     console.log(totalChar)
 //     }    
 //     console.log(totalChar)
-
-
 // **********************************************************************
 // Find the first non-repeating character in a string.
 let str = "werewerrrr"
