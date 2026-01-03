@@ -225,8 +225,6 @@ for (let i = 0; i < str.length; i++) {
 }
 console.log(totalChar)
 
-
-
 function findFirstNonRepeatingCharNaive(str) {
   for (let i = 0; i < str.length; i++) {
     console.log("str[i]-1", str[i])
@@ -275,6 +273,8 @@ function findFirstNonRepeatingChar (str) {
     return first;
 }
 /***************************************************************************/
+Check if two strings are anagrams.
+
 function isAnagram ( str1, str2) {
     const sortedStr1 = str1.split('').sort().join('');
     const sortedStr2 = str2.split('').sort().join('');
@@ -284,9 +284,13 @@ function isAnagram ( str1, str2) {
         return false;
     }
 }
+**************************************************************************
+Reverse each word in a sentence.
 function reverseEachWordv (sentence) {
     return sentence.split(" ").reverse().join(" ")
 }
+**************************************************************************
+Remove duplicate characters from a string.
 function removeRepeatedString (str) {
     const reducedObj = str.split("").reduce((acc, el) => {
         if (acc[el.toLocaleLowerCase()]) {
@@ -304,6 +308,8 @@ function removeRepeatedString (str) {
     }
     return first;
 }
+**************************************************************************
+Find the longest word in a sentence.
 function longestWord ( sentence ) {
     const wordArr = sentence.split(' ');
     let longest = wordArr[0];
@@ -312,6 +318,6 @@ function longestWord ( sentence ) {
             longest = wordArr[i];
         }
         }
-    return longest;
-    
+    return longest;    
 }
+**************************************************************************
