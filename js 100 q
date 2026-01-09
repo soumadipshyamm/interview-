@@ -1,156 +1,75 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <script type="text/javascript" src="test.js"></script>
-</body>
-</html>
-
-
-
 <!-- Reverse a string without using built-in reverse().
-
-Check if a string is a palindrome.
-
-Count the frequency of each character in a string.
-
-Find the first non-repeating character in a string.
-
-Check if two strings are anagrams.
-
-Reverse each word in a sentence.
-
-Remove duplicate characters from a string.
-
-Find the longest word in a sentence.
-
-Convert a string to title case.
-
-Implement your own trim() logic.
-
-Reverse an array without using reverse().
-
-Find the largest number in an array.
-
-Find the smallest number in an array.
-
-Find the second largest number in an array.
-
-Find the missing number from a sequence.
-
-Remove duplicates from an array.
-
-Flatten a nested array (multi-level).
-
-Chunk an array into groups of size N.
-
-Find intersection of two arrays.
-
-Find union of two arrays.
-
-Rotate an array by K positions.
-
-Count occurrences of each element in array.
-
-Find the longest increasing subarray.
-
-Move all zeros to the end of the array.
-
-Sum of all elements in an array (no reduce).
-
-Check if a number is prime.
-
-Generate prime numbers up to N.
-
-Find factorial of a number (loop + recursion).
-
-Find Fibonacci of N (loop + recursion).
-
-Check if number is perfect (sum of divisors).
-
-Reverse digits of a number.
-
-Check if number is Armstrong.
-
-Sum of digits of a number.
-
-Find GCD of two numbers.
-
-Find LCM of two numbers.
-
-Convert decimal to binary.
-
-Convert binary to decimal.
-
-Find power of a number without using Math.pow.
-
-Count number of set bits in integer.
-
-Print all divisors of a number. 
-
-Write a function that returns another function (closure).
-
-Implement a counter using closures.
-
-Implement private variables using closure.
-
-Explain and implement currying function.
-
-Custom debounce function.
-
-Custom throttle function.
-
-Retry API call logic (max 3 retries).
-
-Custom Promise.all implementation.
-
-Custom Promise.race implementation.
-
-Create a function that memoizes results.
-
-Implement sleep() using Promise.
-
-Write async loop that waits for each iteration.
-
-Convert callback-based function to Promise.
-
-Custom event emitter class.
-
-Custom caching function for expensive operations.
-Implement a simple DOM selector function like $().
-
-Implement your own addEventListener.
-
-Build a small pub-sub system.
-
-Detect if element is in viewport.
-
-Count how many times a button is clicked (DOM + JS).
-
-Infinite scrolling logic.
-
-Virtual scrolling logic.
-
-Detect online/offline status.
-
-Implement drag-and-drop logic.
-
-Implement custom localStorage wrapper with expiry.
-Why [] == [] is false in JS?
-
-Why {} == {} is false?
-
-Why [] == ![] is true?
-
-What is event loop & microtask queue example?
-
-Explain this binding with 3 examples.
+ Check if a string is a palindrome.
+ Count the frequency of each character in a string.
+ Find the first non-repeating character in a string.
+ Check if two strings are anagrams.
+ Reverse each word in a sentence.
+ Remove duplicate characters from a string.
+ Find the longest word in a sentence.
+ Convert a string to title case.
+ Implement your own trim() logic.
+ Reverse an array without using reverse().
+ Find the largest number in an array.
+ Find the smallest number in an array.
+ Find the second largest number in an array.
+ Find the missing number from a sequence.
+ Remove duplicates from an array.
+ Flatten a nested array (multi-level).
+ Chunk an array into groups of size N.
+ Find intersection of two arrays.
+ Find union of two arrays.
+ Rotate an array by K positions.
+ Count occurrences of each element in array.
+ Find the longest increasing subarray.
+ Move all zeros to the end of the array.
+ Sum of all elements in an array (no reduce).
+ Check if a number is prime.
+ Generate prime numbers up to N.
+ Find factorial of a number (loop + recursion).
+ Find Fibonacci of N (loop + recursion).
+ Check if number is perfect (sum of divisors).
+ Reverse digits of a number.
+ Check if number is Armstrong.
+ Sum of digits of a number.
+ Find GCD of two numbers.
+ Find LCM of two numbers.
+ Convert decimal to binary.
+ Convert binary to decimal.
+ Find power of a number without using Math.pow.
+ Count number of set bits in integer.
+ Print all divisors of a number. 
+ Write a function that returns another function (closure).
+ Implement a counter using closures.
+ Implement private variables using closure.
+ Explain and implement currying function.
+ Custom debounce function.
+ Custom throttle function.
+ Retry API call logic (max 3 retries).
+ Custom Promise.all implementation.
+ Custom Promise.race implementation.
+ Create a function that memoizes results.
+ Implement sleep() using Promise.
+ Write async loop that waits for each iteration.
+ Convert callback-based function to Promise.
+ Custom event emitter class.
+ Custom caching function for expensive operations.
+ Implement a simple DOM selector function like $().
+ Implement your own addEventListener.
+ Build a small pub-sub system.
+ Detect if element is in viewport.
+ Count how many times a button is clicked (DOM + JS).
+ Infinite scrolling logic.
+ Virtual scrolling logic.
+ Detect online/offline status.
+ Implement drag-and-drop logic.
+ Implement custom localStorage wrapper with expiry.
+ Why [] == [] is false in JS?
+ Why {} == {} is false?
+ Why [] == ![] is true?
+ What is event loop & microtask queue example?
+ Explain this binding with 3 examples.
  -->
+ 
 
 // let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 // let rev = [];
